@@ -1,6 +1,6 @@
 {
-  "name": "awesome-selector-website",
-  "description": "Demo and documentation for Awesome Selector npm package",
+  "name": "awesome-dialog-website",
+  "description": "Demo and documentation for Awesome Dialog npm package",
   "version": "1.0.0",
   "author": "Mostafa Mohammadzadeh",
   "license": "MIT",
@@ -13,7 +13,6 @@
     "export": "next export"
   },
   "dependencies": {
-    "awesome-selector": "^1.0.11",
     "awesome-snackbar": "^2.0.3",
     "next": "12.2.3",
     "react": "18.2.0",
