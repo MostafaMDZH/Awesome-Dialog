@@ -1,0 +1,319 @@
+@import "utils";
+
+.selector{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+    z-index: 999999993;
+    *{
+        padding: 0;
+        margin: 0;
+        font-family: Catamaran-Medium;
+        -webkit-tap-highlight-color: transparent;
+        box-sizing: border-box;
+    }
+    a::-moz-focus-inner,
+    input::-moz-focus-inner,
+    button::-moz-focus-inner{
+        border:0;
+        padding:0;
+    }
+    a{
+        text-decoration:none;
+        outline:none;
+    }
+    input, button, select{
+        border:none;
+        outline:none;
+    }
+    input[type="button"], button, select{
+        cursor: pointer;
+    }
+    input:required,
+    input:invalid{
+        box-shadow:none;
+    }
+    input[type="button"], button{
+        font-size: 1rem;
+        padding:0;
+        background:none;
+    }
+    > .shadow{
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,.5);
+        opacity: 0;
+        transition: opacity 160ms ease-in-out;
+    }
+    > .container{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 160ms ease-in-out;
+        > .window{
+            max-width: calc(100% - 100px);
+            min-height: 260px;
+            max-height: calc(100% - 60px);
+            padding: 15px 17px;
+            padding-top: 13px;
+            background-color: white;
+            border: solid 1px rgb(100, 100, 100);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            > .toolbar{
+                border-bottom: solid 1px #e6e6e6;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 4px;
+                > .title{
+                    min-width: 226px;
+                    padding-left: 2px;
+                    color: #333;
+                }
+                > .searchContainer{
+                    flex: 1;
+                    height: fit-content;
+                    display: flex;
+                    align-items: center;
+                    > svg{
+                        min-width: 30px;
+                    }
+                    > .searchInput{
+                        flex: 1;
+                        font-size: 1rem;
+                        color: #333;
+                    }
+                }
+                > .recentSelectsWrapper{
+                    text-align: right;
+                    height: 35px;
+                    display: none;
+                    overflow: hidden;
+                    > .recentButton{
+                        @extend .transparentBackground;
+                        min-width: fit-content;
+                        padding-left: 7px;
+                        padding-right: 7px;
+                        height: 35px;
+                        font-size: 1rem;
+                        text-align: center;
+                        color: #333;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        border-radius: 3px;
+                    }
+                }
+                > .closeButton{
+                    @extend .transparentBackground;
+                    width: 40px;
+                    min-width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    margin-right: -5px;
+                    margin-bottom: 2px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    > *{
+                        display: none;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    > .closeIcon_light{display: flex}
+                }
+            }
+            > .optionsColumnsWrapper{
+                @extend .thinScrollbar;
+                flex: 1;
+                width: 100%;
+                padding-right: 10px;
+                display: flex;
+                gap: 5px;
+                overflow-y: auto;
+                > .optionsColumn{
+                    flex: 1;
+                    height: fit-content;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 3px;
+                    .optionButton{
+                        width: 100%;
+                        min-width: 167px;
+                        max-width: 200px;
+                        padding-left: 20px;
+                        padding-right: 7px;
+                        height: 38px;
+                        font-size: 1rem;
+                        text-align: left;
+                        color: #333;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        border-radius: 3px;
+                    }
+                    > .optionButton.unselected{
+                        @extend .transparentBackground;
+                    }
+                    > .optionButton.selected{
+                        @extend .coloredBackground;
+                        background-color: #e0eaf5;
+                        color: #0729ae;
+                    }
+                    > .optionButton.withIcon{
+                        padding-left: 37px;
+                        background-repeat: no-repeat;
+                        background-position: left 8px center;
+                        background-size: 17px auto;
+                    }
+                }
+                > .optionsColumn.singleColumn{
+                    .optionButton{
+                        max-width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.selector.visible{
+    visibility: visible;
+    > .shadow,
+    > .container{
+        opacity: 1;
+    }
+}
+
+.selector.dark{
+    > .container{
+        > .window{
+            background-color: #181818;
+            border-color: #1a1a1a;
+            > .toolbar{
+                border-bottom-color: #e6e6e6;
+                > .searchInput{
+                    color: #ccc;
+                }
+                > .title{
+                    color: #ccc;
+                }
+                > .recentSelectsWrapper{
+                    > .recentButton{
+                        @extend .transparentBackground_dark;
+                        color: #ccc;
+                    }
+                }
+                > .closeButton{
+                    @extend .transparentBackground_dark;
+                    > *{display: none;}
+                    > .closeIcon_dark{display: flex;}
+                }
+            }
+            > .optionsColumnsWrapper{
+                > .optionsColumn{
+                    > .optionButton.unselected{
+                        @extend .transparentBackground_dark;
+                        color: #ccc;
+                    }
+                    > .optionButton.selected{
+                        background-color: #269;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//mobile:
+@media only screen and (max-width: 450px){
+    .selector{
+        > .container{
+            > .window{
+                width: 100%;
+                max-width: 100%;
+                min-width: 100%;
+                height: 100%;
+                min-height: unset;
+                max-height: 85%;
+                padding-top: 20px;
+                border: unset;
+                border-top-left-radius: 15px;
+                border-top-right-radius: 15px;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 0;
+                top: unset;
+                bottom: 0;
+                left: 0;
+                transform: unset;
+                > .toolbar{
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    position: relative;
+                    padding-bottom: 8px;
+                    > .searchContainer{
+                        width: calc(100% - 50px);
+                        flex: none;
+                    }
+                    > .recentSelectsWrapper{
+                        text-align: left;
+                        flex: none;
+                        width: 100%;
+                        margin-bottom: -5px;
+                    }
+                    > .closeButton{
+                        flex: none;
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        margin: -6px -8px 0 0;
+                        > *{display: none !important;}
+                        > .downIcon_light{display: flex !important;}
+                    }
+                }
+                > .optionsColumnsWrapper{
+                    width: calc(100% + 5px);
+                    padding-right: 5px;
+                    > .optionsColumn{
+                        width: 100%;
+                        > .optionButton{
+                            min-width: unset;
+                            max-width: unset;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //mobile dark:
+    .selector.dark{
+        > .container{
+            > .window{
+                > .toolbar{
+                    > .closeButton{
+                        > *{display: none !important;}
+                        > .downIcon_dark{display: flex !important;}
+                    }
+                }
+            }
+        }
+    }
+}
