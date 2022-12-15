@@ -1,0 +1,54 @@
+{
+  "name": "awesome-dialog",
+  "description": "React, Angular, Vue, and Typescript compatible dialog",
+  "version": "1.0.0",
+  "author": "Mostafa Mohammadzadeh",
+  "license": "MIT",
+  "main": "src/dialog.js",
+  "types": "src/dialog.d.ts",
+  "scripts": {
+    "test": "jest",
+    "test-cov": "jest --coverage",
+    "pub": "npm test || npm update && npm publish",
+    "deploy": "npm update && npm publish && cd website && npm update && npm run build && npm run export && cd .. && find website/out -type d -exec chmod 755 {} \\; && find website/out -type f -exec chmod 644 {} \\; && git add -A && git commit -m \"[deployment auto commit]\" && git ftp push",
+    "website": "cd website && npm run build && npm run export && cd .. && find website/out -type d -exec chmod 755 {} \\; && find website/out -type f -exec chmod 644 {} \\; && git add -A && git commit -m \"[deployment auto commit]\" && git ftp push"
+  },
+  "devDependencies": {
+    "jest": "^28.1.3",
+    "jest-environment-jsdom": "^28.1.3"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
+  "keywords": [
+    "react",
+    "angular",
+    "vue",
+    "typescript",
+    "next",
+    "module",
+    "component",
+    "dialog",
+    "react component",
+    "javascript",
+    "react dialog",
+    "dialog",
+    "reactjs dialog",
+    "reactjs",
+    "nextjs",
+    "next dialog",
+    "ui",
+    "nextjs dialog",
+    "jquery",
+    "ts",
+    "js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MostafaMDZH/Awesome-Dialog.git"
+  },
+  "homepage": "https://dialog.awesome-components.com",
+  "bugs": {
+    "url": "https://github.com/MostafaMDZH/Awesome-Dialog/issues"
+  }
+}
